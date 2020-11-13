@@ -3,12 +3,6 @@ import 'package:bracelet_new/constants.dart';
 import 'package:bracelet_new/header_with_searchbox.dart';
 
 import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -23,7 +17,7 @@ class Body extends StatelessWidget {
             child: Row(
               children: [
                 TitleWithCustomUnderLine(
-                  text: 'Recommend',
+                  text: 'Recommend Bracelet!',
                 ),
                 Spacer(),
                 FlatButton(
@@ -44,16 +38,52 @@ class Body extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                RecommendCard(size, context, 'assets/images/image_1.png',
-                    'Bracelet\n', 'Gold', 399),
-                RecommendCard(size, context, 'assets/images/image_2.png',
-                    'Bracelet\n', 'Gold', 399),
-                RecommendCard(size, context, 'assets/images/image_3.png',
-                    'Bracelet\n', 'Gold', 399)
+                RecommendCard(size, context, 'assets/bracelet/1_G.png',
+                    'Diamond\n', 'Gold', 399),
+                RecommendCard(size, context, 'assets/bracelet/2_G.png',
+                    'Classic\n', 'Gold', 499),
+                RecommendCard(size, context, 'assets/bracelet/3_G.png',
+                    'Modern\n', 'Gold', 599)
               ],
             ),
-          )
-
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            child: Row(
+              children: [
+                TitleWithCustomUnderLine(
+                  text: 'Best Seller Pendant bracelet!',
+                ),
+                Spacer(),
+                FlatButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  color: kPrimaryColor,
+                  onPressed: () {},
+                  child: Text(
+                    'More',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                RecommendCard(size, context, 'assets/pendant/1.png',
+                    'Hearth Song\n', 'Silver', 159),
+                RecommendCard(size, context, 'assets/pendant/2.png',
+                    'Tree\n', 'Silver', 239),
+                RecommendCard(size, context, 'assets/pendant/3.png',
+                    'Leaf clover\n', 'Silver', 259),
+                RecommendCard(size, context, 'assets/pendant/4.png',
+                    'T\n', 'Silver', 199)
+              ],
+            ),
+          ),
         ],
       ),
     );

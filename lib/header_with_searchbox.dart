@@ -39,11 +39,27 @@ class HeaderWithSearchBox extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline5.copyWith(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
+//                Text(
+//                  'Promotion for you!',
+//                  style: Theme.of(context).textTheme.headline6.copyWith(
+//                      color: Colors.white, fontWeight: FontWeight.bold),
+//                ),
                 Spacer(),
                 Image.asset("assets/images/logo.png")
               ],
             ),
           ),
+//          Row(
+//            children: [
+//              Text(
+//                'Promotion for you!',
+//                style: Theme.of(context)
+//                    .textTheme
+//                    .headline6
+//                    .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+//              ),
+//            ],
+//          ),
           Positioned(
             bottom: 0,
             left: 0,
@@ -70,7 +86,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                     child: TextField(
                       onChanged: (value) {},
                       decoration: InputDecoration(
-                        hintText: "Search",
+                        hintText: "Grad to see you!",
                         hintStyle: TextStyle(
                           color: kPrimaryColor.withOpacity(0.5),
                         ),
