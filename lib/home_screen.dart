@@ -18,6 +18,10 @@ class Homescreen extends StatelessWidget {
         icon: SvgPicture.asset("assets/icons/menu.svg"),
         onPressed: () {},
       ),
+      actions: [IconButton(
+        icon: SvgPicture.asset("assets/icons/shopping-cart.svg",color: Colors.white,height: 70,),
+        onPressed: () {},
+      )],
     );
   }
 }
