@@ -1,3 +1,6 @@
+import 'package:bracelet_new/Cart.dart';
+import 'package:bracelet_new/Product.dart';
+import 'package:bracelet_new/body.dart';
 import 'package:flutter/material.dart';
 import 'package:bracelet_new/constants.dart';
 import 'package:bracelet_new/home_screen.dart';
@@ -20,6 +23,10 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Homescreen(),
+      routes: {'/Cart': (context) => CartPage(),
+                '/Body': (context) => Body(),
+                '/Product': (context) => Product(),},
+
 //      home: MyHomePage(),
     );
   }

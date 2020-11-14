@@ -1,104 +1,112 @@
-import 'package:bracelet_new/Cart.dart';
 import 'package:flutter/material.dart';
-import 'package:bracelet_new/constants.dart';
-import 'package:bracelet_new/header_with_searchbox.dart';
+import 'package:flutter_svg/svg.dart';
 
+import 'Cart.dart';
 import 'constants.dart';
 
-class Body extends StatefulWidget {
+class Product extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _Body();
+    return _Product();
   }
 }
 
-class _Body extends State<Body> {
+class _Product extends State<Product> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: buildAppBar(),
+      body: ProductItem(),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      elevation: 0,
+      leading: IconButton(
+        icon: SvgPicture.asset("assets/icons/menu.svg"),
+        onPressed: () {
+          setState(() {});
+          Navigator.pop(context);
+        },
+      ),
+      actions: [
+        IconButton(
+          icon: SvgPicture.asset(
+            "assets/icons/shopping-cart.svg",
+            color: Colors.white,
+            height: 70,
+          ),
+          onPressed: () {
+//            print('gogogogogo');
+            setState(() {});
+            Navigator.pushNamed(context, '/Cart');
+          },
+        )
+      ],
+    );
+  }
+}
+
+class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          HeaderWithSearchBox(size: size),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-            child: Row(
-              children: [
-                TitleWithCustomUnderLine(
-                  text: 'Recommend Bracelet!',
-                ),
-                Spacer(),
-                FlatButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              child: Row(
+                children: [
+                  TitleWithCustomUnderLine(
+                    text: 'Bracelet!',
                   ),
-                  color: kPrimaryColor,
-                  onPressed: () {
-                    setState(() {});
-                    Navigator.pushNamed(context, '/Product');
-                  },
-                  child: Text(
-                    'More',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                ],
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  RecommendCard(size, context, 'assets/bracelet/1_G.png',
+                      'Diamond\n', 'Gold', 399),
+                  RecommendCard(size, context, 'assets/bracelet/2_G.png',
+                      'Classic\n', 'Gold', 499),
+                  RecommendCard(size, context, 'assets/bracelet/3_G.png',
+                      'Modern\n', 'Gold', 599)
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              child: Row(
+                children: [
+                  TitleWithCustomUnderLine(
+                    text: 'Pendant bracelet!',
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                RecommendCard(size, context, 'assets/bracelet/1_G.png',
-                    'Diamond\n', 'Gold', 399),
-                RecommendCard(size, context, 'assets/bracelet/2_G.png',
-                    'Classic\n', 'Gold', 499),
-                RecommendCard(size, context, 'assets/bracelet/3_G.png',
-                    'Modern\n', 'Gold', 599)
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  RecommendCard(size, context, 'assets/pendant/1.png',
+                      'Hearth Song\n', 'Silver', 159),
+                  RecommendCard(size, context, 'assets/pendant/2.png', 'Tree\n',
+                      'Silver', 239),
+                  RecommendCard(size, context, 'assets/pendant/3.png',
+                      'Leaf clover\n', 'Silver', 259),
+                  RecommendCard(size, context, 'assets/pendant/4.png', 'T\n',
+                      'Silver', 199)
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-            child: Row(
-              children: [
-                TitleWithCustomUnderLine(
-                  text: 'Best Seller Pendant bracelet!',
-                ),
-                Spacer(),
-                FlatButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: kPrimaryColor,
-                  onPressed: () {
-                    setState(() {});
-                    Navigator.pushNamed(context, '/Product');
-                  },
-                  child: Text(
-                    'More',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                RecommendCard(size, context, 'assets/pendant/1.png',
-                    'Hearth Song\n', 'Silver', 159),
-                RecommendCard(size, context, 'assets/pendant/2.png', 'Tree\n',
-                    'Silver', 239),
-                RecommendCard(size, context, 'assets/pendant/3.png',
-                    'Leaf clover\n', 'Silver', 259),
-                RecommendCard(
-                    size, context, 'assets/pendant/4.png', 'T\n', 'Silver', 199)
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -115,9 +123,9 @@ class _Body extends State<Body> {
       child: InkWell(
         onTap: () {
 //          Navigator.pushNamed(context, '/Cart');
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context)=>CartPage(pic: img,price: price,nameProduct: title,color: Materail,)
-        ));
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context)=>CartPage(pic: img,price: price,nameProduct: title,color: Materail,)
+          ));
         },
         child: Column(
           children: [
