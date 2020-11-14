@@ -39,27 +39,11 @@ class HeaderWithSearchBox extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline5.copyWith(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-//                Text(
-//                  'Promotion for you!',
-//                  style: Theme.of(context).textTheme.headline6.copyWith(
-//                      color: Colors.white, fontWeight: FontWeight.bold),
-//                ),
                 Spacer(),
-                Image.asset("assets/images/logo.png")
+                Image.asset("assets/images/logo1.png")
               ],
             ),
           ),
-//          Row(
-//            children: [
-//              Text(
-//                'Promotion for you!',
-//                style: Theme.of(context)
-//                    .textTheme
-//                    .headline6
-//                    .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-//              ),
-//            ],
-//          ),
           Positioned(
             bottom: 0,
             left: 0,
@@ -92,9 +76,6 @@ class HeaderWithSearchBox extends StatelessWidget {
                         ),
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
-                        // surffix isn't working properly  with SVG
-                        // thats why we use row
-                        // suffixIcon: SvgPicture.asset("assets/icons/search.svg"),
                       ),
                     ),
                   ),

@@ -1,8 +1,7 @@
-import 'package:bracelet_new/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import 'body.dart';
+import 'package:bracelet_new/constants.dart';
+import 'Payment.dart';
 import 'constants.dart';
 
 class CartPage extends StatefulWidget {
@@ -20,18 +19,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _cartstate extends State<CartPage> {
-//  @override
-//  void initState() {
-//    super.initState();
-//    print(widget.pic);
-//    BodyCart(
-//      color: widget.color,
-//      nameProduct: widget.nameProduct,
-//      pic: widget.pic,
-//      price: widget.price,
-//    );
-//  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,24 +42,9 @@ class _cartstate extends State<CartPage> {
           Navigator.pop(context);
         },
       ),
-//      actions: [
-//        IconButton(
-//          icon: SvgPicture.asset(
-//            "assets/icons/shopping-cart.svg",
-//            color: Colors.white,
-//            height: 70,
-//          ),
-//          onPressed: () {
-//            print('gogogogogo');
-//            setState(() {});
-//            Navigator.pushNamed(context, '/Cart');
-//          },
-//        )
-//      ],
     );
   }
 }
-
 
 class BodyCart extends StatelessWidget {
   final String nameProduct;
@@ -84,17 +56,68 @@ class BodyCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String test = nameProduct;
     return Container(
-      child: Row(
+      child: Column(
         children: [
-          Column(
-            children: [
-              Image.asset(
-                pic,
-                width: 400,
-              )
-            ],
-          )
+          Container(
+            padding: const EdgeInsets.only(top: kDefaultPadding * 2),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20)),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, 10),
+                    blurRadius: 50,
+                    color: kPrimaryColor.withOpacity(0.23),
+                  )
+                ]),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    Image.asset(
+                      pic,
+                      height: 200,
+                    ),
+                    Text(
+                      nameProduct,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5
+                          .copyWith(color: kPrimaryColor),
+                    ),
+                    Text(
+                      color,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5
+                          .copyWith(color: kPrimaryColor),
+                    ),
+                    Text(
+                      price.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5
+                          .copyWith(color: kPrimaryColor),
+                    ),
+                    IconButton(
+                      icon: SvgPicture.asset("assets/icons/shopping-cart.svg"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Payment()));
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

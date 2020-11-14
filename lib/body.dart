@@ -115,9 +115,15 @@ class _Body extends State<Body> {
       child: InkWell(
         onTap: () {
 //          Navigator.pushNamed(context, '/Cart');
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context)=>CartPage(pic: img,price: price,nameProduct: title,color: Materail,)
-        ));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CartPage(
+                        pic: img,
+                        price: price,
+                        nameProduct: title,
+                        color: Materail,
+                      )));
         },
         child: Column(
           children: [

@@ -30,20 +30,20 @@ class _Product extends State<Product> {
           Navigator.pop(context);
         },
       ),
-      actions: [
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/shopping-cart.svg",
-            color: Colors.white,
-            height: 70,
-          ),
-          onPressed: () {
-//            print('gogogogogo');
-            setState(() {});
-            Navigator.pushNamed(context, '/Cart');
-          },
-        )
-      ],
+//      actions: [
+//        IconButton(
+//          icon: SvgPicture.asset(
+//            "assets/icons/shopping-cart.svg",
+//            color: Colors.white,
+//            height: 70,
+//          ),
+//          onPressed: () {
+////            print('gogogogogo');
+//            setState(() {});
+//            Navigator.pushNamed(context, '/Cart');
+//          },
+//        )
+//      ],
     );
   }
 }
@@ -123,9 +123,15 @@ class ProductItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
 //          Navigator.pushNamed(context, '/Cart');
-          Navigator.push(context, MaterialPageRoute(
-              builder: (context)=>CartPage(pic: img,price: price,nameProduct: title,color: Materail,)
-          ));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CartPage(
+                        pic: img,
+                        price: price,
+                        nameProduct: title,
+                        color: Materail,
+                      )));
         },
         child: Column(
           children: [
