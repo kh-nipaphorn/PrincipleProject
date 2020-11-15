@@ -7,7 +7,7 @@ import 'constants.dart';
 class CartPage extends StatefulWidget {
   final String nameProduct;
   final String color;
-  final int price;
+  final double price;
   final String pic;
 
   CartPage({this.nameProduct, this.color, this.price, this.pic});
@@ -49,7 +49,7 @@ class _cartstate extends State<CartPage> {
 class BodyCart extends StatelessWidget {
   final String nameProduct;
   final String color;
-  final int price;
+  final double price;
   final String pic;
 
   BodyCart({this.pic, this.price, this.color, this.nameProduct});

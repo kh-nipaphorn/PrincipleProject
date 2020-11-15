@@ -112,7 +112,7 @@ class ProductItem extends StatelessWidget {
   }
 
   Container RecommendCard(Size size, BuildContext context, String img,
-      String title, String Materail, int price) {
+      String title, String Materail, double price) {
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(

@@ -16,13 +16,12 @@ class Body extends StatefulWidget {
 }
 
 class _Body extends State<Body> {
-  var data;
-  void getdata()async{
-    var res = await http.get("https://springtermproject.herokuapp.com/Product/show",
-      headers: {
-      'Content-Type':'application/json'
-      }
-    );
+  var data = List<dynamic>();
+
+  void getdata() async {
+    var res = await http.get(
+        "https://springtermproject.herokuapp.com/Product/show",
+        headers: {'Content-Type': 'application/json'});
     setState(() {
       data = jsonDecode(res.body);
       print(data);
@@ -31,10 +30,10 @@ class _Body extends State<Body> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getdata();
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -67,19 +66,37 @@ class _Body extends State<Body> {
               ],
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                RecommendCard(size, context, 'assets/bracelet/1_G.png',
-                    'Diamond\n', 'Gold', 399),
-                RecommendCard(size, context, 'assets/bracelet/2_G.png',
-                    'Classic\n', 'Gold', 499),
-                RecommendCard(size, context, 'assets/bracelet/3_G.png',
-                    'Modern\n', 'Gold', 599)
-              ],
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 250,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: data.length,
+                    itemBuilder: (context, int index){
+//                      return Container(
+//                        color: Colors.red,
+//                        height: 50,
+//                        width: 50,
+//                      );
+                      return RecommendCard(size, context, 'assets/bracelet/1_G.png', data[index]['name'], 'Gold', data[index]['price']);
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
+//          Row(
+//            children: [
+//              RecommendCard(size, context, 'assets/bracelet/1_G.png',
+//                  '', 'Gold', 399),
+//              RecommendCard(size, context, 'assets/bracelet/2_G.png',
+//                  'Classic\n', 'Gold', 499),
+//              RecommendCard(size, context, 'assets/bracelet/3_G.png',
+//                  'Modern\n', 'Gold', 599)
+//            ],
+//          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
             child: Row(
@@ -110,13 +127,13 @@ class _Body extends State<Body> {
             child: Row(
               children: [
                 RecommendCard(size, context, 'assets/pendant/1.png',
-                    'Hearth Song\n', 'Silver', 159),
-                RecommendCard(size, context, 'assets/pendant/2.png', 'Tree\n',
+                    'Hearth Song', 'Silver', 159),
+                RecommendCard(size, context, 'assets/pendant/2.png', 'Tree',
                     'Silver', 239),
                 RecommendCard(size, context, 'assets/pendant/3.png',
-                    'Leaf clover\n', 'Silver', 259),
+                    'Leaf clover', 'Silver', 259),
                 RecommendCard(
-                    size, context, 'assets/pendant/4.png', 'T\n', 'Silver', 199)
+                    size, context, 'assets/pendant/4.png', 'T', 'Silver', 199)
               ],
             ),
           ),
@@ -126,14 +143,20 @@ class _Body extends State<Body> {
   }
 
   Container RecommendCard(Size size, BuildContext context, String img,
-      String title, String Materail, int price) {
+      String title, String Materail, double price) {
     Size size = MediaQuery.of(context).size;
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
       margin: EdgeInsets.only(
           left: kDefaultPadding,
           top: kDefaultPadding / 2,
-          bottom: kDefaultPadding * 2.5),
+          bottom: kDefaultPadding * 2.5
+      ),
       width: size.width * 0.4,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20))
+      ),
       child: InkWell(
         onTap: () {
 //          Navigator.pushNamed(context, '/Cart');
@@ -150,46 +173,51 @@ class _Body extends State<Body> {
         child: Column(
           children: [
             Image.asset(img),
-            Container(
-              padding: EdgeInsets.all(kDefaultPadding / 2),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10)),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 10),
-                      blurRadius: 50,
-                      color: kPrimaryColor.withOpacity(0.23),
-                    )
-                  ]),
-              child: Row(
-                children: [
-                  RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                          text: title.toUpperCase(),
-                          style: Theme.of(context).textTheme.button),
-                      TextSpan(
-                        text: Materail.toUpperCase(),
-                        style: TextStyle(
-                          color: kPrimaryColor.withOpacity(0.5),
-                        ),
-                      )
-                    ]),
-                  ),
-                  Spacer(),
-                  Text(
-                    price.toString(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .button
-                        .copyWith(color: kPrimaryColor),
-                  )
-                ],
-              ),
-            )
+            SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(Materail,style: TextStyle(color: kPrimaryColor),),
+                Text(price.toString())
+              ],
+            ),
+SizedBox(
+  height: 10,
+)
+
+//            Column(
+//              children: [
+//                Container(
+//                  child: RichText(
+//                    text: TextSpan(children: [
+//                      TextSpan(
+//                          text: title.toUpperCase(),
+//                          style: Theme.of(context).textTheme.button),
+//                      TextSpan(
+//                        text: Materail.toUpperCase(),
+//                        style: TextStyle(
+//                          color: kPrimaryColor.withOpacity(0.5),
+//                        ),
+//                      )
+//                    ]),
+//                  ),
+//                ),
+//                Spacer(),
+//                Text(
+//                  price.toString(),
+//                  style: Theme.of(context)
+//                      .textTheme
+//                      .button
+//                      .copyWith(color: kPrimaryColor),
+//                )
+//              ],
+//            )
           ],
         ),
       ),
