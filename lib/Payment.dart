@@ -1,3 +1,4 @@
+import 'package:bracelet_new/ConfirmPayment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -29,15 +30,21 @@ class _PaymentState extends State<Payment> {
       ),
       actions: [
         IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/back_arrow.svg",
-            color: Colors.white,
-            height: 70,
+          icon: Icon(
+            Icons.clear,
+            size: 30,
           ),
           onPressed: () {
             setState(() {});
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Homescreen(),));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Homescreen(),
+                ));
           },
+        ),
+        SizedBox(
+          width: 5,
         )
       ],
     );
@@ -45,16 +52,71 @@ class _PaymentState extends State<Payment> {
 }
 
 class InsertData extends StatelessWidget {
+  var _nameController = TextEditingController();
+  var _telController = TextEditingController();
+  var _addressController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
-        children: [
-          Image.asset(
-            'assets/images/qrcode.png',
-            height: 400,
-          )
-        ],
+      child: Center(
+        child: ListView(
+          children: [
+            Image.asset(
+              'assets/images/qrcode.png',
+              height: 400,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+              child: TextField(
+                style: Theme.of(context).textTheme.headline5,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(labelText: 'Name'),
+                controller: _nameController,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+              child: TextField(
+                style: Theme.of(context).textTheme.headline5,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(labelText: 'Tel'),
+                controller: _telController,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+              child: TextField(
+                style: Theme.of(context).textTheme.headline5,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(labelText: 'Address'),
+                controller: _addressController,
+              ),
+            ),
+            Row(
+              children: [
+                RaisedButton(
+                  child: Text('Confirm'),
+//                  onPressed: () => print('This is Login button'),
+                  onPressed: () {
+                    print('This is Login button');
+//                    message = _usernameController.text;
+//                    setState(() {});
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CFpayment(
+                                  Name: _nameController.text,
+                                  Tel: _telController.text,
+                                  address: _addressController.text,
+                                )));
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

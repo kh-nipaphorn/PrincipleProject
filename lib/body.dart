@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:bracelet_new/Cart.dart';
 import 'package:flutter/material.dart';
 import 'package:bracelet_new/constants.dart';
 import 'package:bracelet_new/header_with_searchbox.dart';
+import 'package:http/http.dart' as http;
 
 import 'constants.dart';
 
@@ -13,6 +16,25 @@ class Body extends StatefulWidget {
 }
 
 class _Body extends State<Body> {
+  var data;
+  void getdata()async{
+    var res = await http.get("https://springtermproject.herokuapp.com/Product/show",
+      headers: {
+      'Content-Type':'application/json'
+      }
+    );
+    setState(() {
+      data = jsonDecode(res.body);
+      print(data);
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getdata();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
