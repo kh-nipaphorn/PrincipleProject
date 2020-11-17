@@ -74,13 +74,19 @@ class _Body extends State<Body> {
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: data.length,
-                    itemBuilder: (context, int index){
+                    itemBuilder: (context, int index) {
 //                      return Container(
 //                        color: Colors.red,
 //                        height: 50,
 //                        width: 50,
 //                      );
-                      return RecommendCard(size, context, 'assets/bracelet/1_G.png', data[index]['name'], 'Gold', data[index]['price']);
+                      return RecommendCard(
+                          size,
+                          context,
+                          'assets/bracelet/1_G.png',
+                          data[index]['name'],
+                          'Gold',
+                          data[index]['price']);
                     },
                   ),
                 ),
@@ -150,13 +156,13 @@ class _Body extends State<Body> {
       margin: EdgeInsets.only(
           left: kDefaultPadding,
           top: kDefaultPadding / 2,
-          bottom: kDefaultPadding * 2.5
-      ),
+          bottom: kDefaultPadding * 2.5),
       width: size.width * 0.4,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20))
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20))),
       child: InkWell(
         onTap: () {
 //          Navigator.pushNamed(context, '/Cart');
@@ -173,7 +179,9 @@ class _Body extends State<Body> {
         child: Column(
           children: [
             Image.asset(img),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -183,13 +191,16 @@ class _Body extends State<Body> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(Materail,style: TextStyle(color: kPrimaryColor),),
+                Text(
+                  Materail,
+                  style: TextStyle(color: kPrimaryColor),
+                ),
                 Text(price.toString())
               ],
             ),
-SizedBox(
-  height: 10,
-)
+            SizedBox(
+              height: 10,
+            )
 
 //            Column(
 //              children: [

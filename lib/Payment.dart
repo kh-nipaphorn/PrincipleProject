@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'home_screen.dart';
 
 class Payment extends StatefulWidget {
+  final double price;
+  Payment({this.price});
   @override
   _PaymentState createState() => _PaymentState();
 }
@@ -14,7 +16,9 @@ class _PaymentState extends State<Payment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: InsertData(),
+      body: InsertData(
+        price: widget.price,
+      ),
     );
   }
 
@@ -55,7 +59,8 @@ class InsertData extends StatelessWidget {
   var _nameController = TextEditingController();
   var _telController = TextEditingController();
   var _addressController = TextEditingController();
-
+  final double price;
+  InsertData({this.price});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -110,6 +115,7 @@ class InsertData extends StatelessWidget {
                                   Name: _nameController.text,
                                   Tel: _telController.text,
                                   address: _addressController.text,
+                                  price: price,
                                 )));
                   },
                 ),

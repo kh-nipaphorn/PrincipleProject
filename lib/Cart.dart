@@ -110,7 +110,9 @@ class BodyCart extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Payment()));
+                                builder: (context) => Payment(
+                                  price: price,
+                                )));
                       },
                     ),
                   ],
