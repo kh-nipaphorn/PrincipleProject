@@ -79,7 +79,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SvgPicture.asset("assets/icons/search.svg"),
+//                  SvgPicture.asset("assets/icons/search.svg"),
                 ],
               ),
             ),
